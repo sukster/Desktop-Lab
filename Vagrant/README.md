@@ -1,6 +1,6 @@
-1. Make sure that you have built the Windows 10 box with Packer and added it to Vagrant repository:
+1. Make sure that you have the "detectionlab/win10" box in your Vagrant repository:
 vagrant box list.
 2. Create a new project folder
-3. Copy the VagrantFile into this folder
+3. Copy this VagrantFile into this project folder
 4. Copy the "scripts" folder from DetectionLab/Vagrant folder into this project folder 
-5. Open CMD and run "vagrant up"
+5. Open cmd and run "vagrant up"
