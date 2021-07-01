@@ -2,5 +2,5 @@
 vagrant box list.
 2. Create a new project folder
 3. Copy this VagrantFile into this project folder
-4. Copy the "scripts" folder from DetectionLab/Vagrant folder into this project folder 
+4. Copy the "scripts" and "resources" folders from DetectionLab/Vagrant folder into this project folder 
 5. Open cmd and run "vagrant up"
