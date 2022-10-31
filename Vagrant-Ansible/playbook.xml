@@ -1,0 +1,13 @@
+---
+- name: Configure Windows 10
+  hosts: all
+ 
+  tasks:
+  - name: Change hostname
+    win_hostname:
+        name: windows10
+  
+  - name: Install git
+    win_chocolatey:
+        name: git
+        state: present
