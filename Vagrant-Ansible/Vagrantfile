@@ -1,0 +1,32 @@
+Vagrant.configure("2") do |config|
+  config.vm.synced_folder ".", "/vagrant", disabled: true
+
+  config.vm.define "win10" do |subconfig|
+    subconfig.vm.box = "gusztavvargadr/windows-10"
+    subconfig.vm.network "public_network", bridge: "External Switch"
+    subconfig.vm.hostname = "win10"
+    subconfig.vm.boot_timeout = 600
+    subconfig.vm.communicator = "winrm"
+    subconfig.winrm.basic_auth_only = true
+    subconfig.winrm.timeout = 600
+    subconfig.winrm.retry_limit = 20
+	
+    subconfig.vm.provision "shell", inline: 'cscript c:\windows\system32\slmgr.vbs /dlv', privileged: true
+
+    subconfig.vm.provider "hyperv" do |hyperv|
+      hyperv.vmname = "win10"
+      hyperv.memory = 4096
+      hyperv.cpus = 2
+      hyperv.ip_address_timeout = 600
+      hyperv.enable_virtualization_extensions = false
+      hyperv.linked_clone = true
+    end
+
+    subconfig.vm.provision "ansible" do |ansible|
+      ansible.verbose = "v"
+      ansible.playbook = "playbook.yml"
+    end
+
+  end
+
+end
